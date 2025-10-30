@@ -427,92 +427,87 @@ G2L["2f"]["Name"] = [[modal]];
 
 PlayerGui.GUI.Main.GlobalChat.ActiveOne.Value = true
 
--- StarterGui.ScreenGui.Loader
-local function C_2()
-local script = G2L["2"];
-	local runS = game:GetService("RunService")
-	local TweS = game:GetService("TweenService")
-	
-	local Gui = script.ScreenGui.Frame
-	
-	local List = loadstring(game:HttpGet("https://raw.githubusercontent.com/uedan228/HappyHub/refs/heads/main/Loader/List"))()
-	
-	local scrIdx = 1	
-	local VecIbx = 1
-	
-	Gui["5SelectScr"]["Select+"].InputBegan:Connect(function(k, _k)
-		if _k then return end
-	
-		if k.UserInputType == Enum.UserInputType.MouseButton1 then
-			scrIdx = scrIdx % #List + 1
-			VecIbx = 1
-			Gui["5SelectScr"]["ScriptName"].TextLabel.Text = List[scrIdx].Name
-			Gui["4SelectVer"]["Text"].TextLabel.Text = List[scrIdx]["Versions"][VecIbx].Index
-			Gui["2Functon"]["Scrol"].TextLabel.Text = List[scrIdx]["Versions"][VecIbx].Function
-		end
-	end)
-	
-	Gui["5SelectScr"]["Select-"].InputBegan:Connect(function(k, _k)
-		if _k then return end
-	
-		if k.UserInputType == Enum.UserInputType.MouseButton1 then
-			scrIdx = scrIdx % #List - 1
-			scrIdx = scrIdx<1 and 1 or scrIdx
-			VecIbx = 1
-	
-			Gui["5SelectScr"]["ScriptName"].TextLabel.Text = List[scrIdx].Name
-			Gui["4SelectVer"]["Text"].TextLabel.Text = List[scrIdx]["Versions"][VecIbx].Index
-			Gui["2Functon"]["Scrol"].TextLabel.Text = List[scrIdx]["Versions"][VecIbx].Function
-		end
-	end)
-	
-	Gui["4SelectVer"]["Select+"].InputBegan:Connect(function(k, _k)
-		if _k then return end
-	
-		if k.UserInputType == Enum.UserInputType.MouseButton1 then
-			VecIbx = VecIbx % #List[scrIdx]["Versions"] + 1
-			Gui["4SelectVer"]["Text"].TextLabel.Text = List[scrIdx]["Versions"][VecIbx].Index
-			Gui["2Functon"]["Scrol"].TextLabel.Text = List[scrIdx]["Versions"][VecIbx].Function
-		end
-	end)
-	
-	Gui["4SelectVer"]["Select-"].InputBegan:Connect(function(k, _k)
-		if _k then return end
-	
-		if k.UserInputType == Enum.UserInputType.MouseButton1 then
-			VecIbx = VecIbx % #List[scrIdx]["Versions"] - 1
-			VecIbx = VecIbx<1 and 1 or VecIbx
-	
-			Gui["4SelectVer"]["Text"].TextLabel.Text = List[scrIdx]["Versions"][VecIbx].Index
-			Gui["2Functon"]["Scrol"].TextLabel.Text = List[scrIdx]["Versions"][VecIbx].Function
-		end
-	end)
-	
-	Gui["Load"].InputBegan:Connect(function(k, _k)
-		if _k then return end
-	
-		if k.UserInputType == Enum.UserInputType.MouseButton1 then
-			setclipboard("https://discord.gg/kgMfr4Bu")
 
-			loadstring(game:HttpGet(List[scrIdx]["Versions"][VecIbx].Link))()
-			script:Destroy()
-		end
-	end)
-	
-	Gui["5SelectScr"]["ScriptName"].TextLabel.Text = List[scrIdx].Name
-	Gui["4SelectVer"]["Text"].TextLabel.Text = List[scrIdx]["Versions"][VecIbx].Index
-	Gui["2Functon"]["Scrol"].TextLabel.Text = List[scrIdx]["Versions"][VecIbx].Function
-	
-	local hue = 0
-	
-	while true do
-		runS.RenderStepped:Wait()
-		hue = hue + 0.005
-		if hue > 1 then hue = 0 end
-	
-		Gui["3dsc link"].TextLabel.TextColor3 = Color3.fromHSV(hue, 1, 1)
-	end
-	
-	
-end;
-task.spawn(C_2);
+local script = G2L["2"];
+local runS = game:GetService("RunService")
+local TweS = game:GetService("TweenService")
+
+local Gui = script.ScreenGui.Frame
+
+local List = loadstring(game:HttpGet("https://raw.githubusercontent.com/uedan228/HappyHub/refs/heads/main/Loader/List"))()
+
+local scrIdx = 1	
+local VecIbx = 1
+
+Gui["5SelectScr"]["Select+"].InputBegan:Connect(function(k, _k)
+    if _k then return end
+
+    if k.UserInputType == Enum.UserInputType.MouseButton1 then
+        scrIdx = scrIdx % #List + 1
+        VecIbx = 1
+        Gui["5SelectScr"]["ScriptName"].TextLabel.Text = List[scrIdx].Name
+        Gui["4SelectVer"]["Text"].TextLabel.Text = List[scrIdx]["Versions"][VecIbx].Index
+        Gui["2Functon"]["Scrol"].TextLabel.Text = List[scrIdx]["Versions"][VecIbx].Function
+    end
+end)
+
+Gui["5SelectScr"]["Select-"].InputBegan:Connect(function(k, _k)
+    if _k then return end
+
+    if k.UserInputType == Enum.UserInputType.MouseButton1 then
+        scrIdx = scrIdx % #List - 1
+        scrIdx = scrIdx<1 and 1 or scrIdx
+        VecIbx = 1
+
+        Gui["5SelectScr"]["ScriptName"].TextLabel.Text = List[scrIdx].Name
+        Gui["4SelectVer"]["Text"].TextLabel.Text = List[scrIdx]["Versions"][VecIbx].Index
+        Gui["2Functon"]["Scrol"].TextLabel.Text = List[scrIdx]["Versions"][VecIbx].Function
+    end
+end)
+
+Gui["4SelectVer"]["Select+"].InputBegan:Connect(function(k, _k)
+    if _k then return end
+
+    if k.UserInputType == Enum.UserInputType.MouseButton1 then
+        VecIbx = VecIbx % #List[scrIdx]["Versions"] + 1
+        Gui["4SelectVer"]["Text"].TextLabel.Text = List[scrIdx]["Versions"][VecIbx].Index
+        Gui["2Functon"]["Scrol"].TextLabel.Text = List[scrIdx]["Versions"][VecIbx].Function
+    end
+end)
+
+Gui["4SelectVer"]["Select-"].InputBegan:Connect(function(k, _k)
+    if _k then return end
+
+    if k.UserInputType == Enum.UserInputType.MouseButton1 then
+        VecIbx = VecIbx % #List[scrIdx]["Versions"] - 1
+        VecIbx = VecIbx<1 and 1 or VecIbx
+
+        Gui["4SelectVer"]["Text"].TextLabel.Text = List[scrIdx]["Versions"][VecIbx].Index
+        Gui["2Functon"]["Scrol"].TextLabel.Text = List[scrIdx]["Versions"][VecIbx].Function
+    end
+end)
+
+Gui:WaitForChild("Load").InputBegan:Connect(function(k, _k)
+    if _k then return end
+
+    if k.UserInputType == Enum.UserInputType.MouseButton1 then
+        setclipboard("https://discord.gg/kgMfr4Bu")
+
+        loadstring(game:HttpGet(List[scrIdx]["Versions"][VecIbx].Link))()
+        script:Destroy()
+    end
+end)
+
+Gui["5SelectScr"]["ScriptName"].TextLabel.Text = List[scrIdx].Name
+Gui["4SelectVer"]["Text"].TextLabel.Text = List[scrIdx]["Versions"][VecIbx].Index
+Gui["2Functon"]["Scrol"].TextLabel.Text = List[scrIdx]["Versions"][VecIbx].Function
+
+local hue = 0
+
+while true do
+    runS.RenderStepped:Wait()
+    hue = hue + 0.005
+    if hue > 1 then hue = 0 end
+
+    Gui["3dsc link"].TextLabel.TextColor3 = Color3.fromHSV(hue, 1, 1)
+end
