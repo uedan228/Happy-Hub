@@ -492,7 +492,7 @@ Gui:WaitForChild("Load").InputBegan:Connect(function(k, _k)
 
     if k.UserInputType == Enum.UserInputType.MouseButton1 then
         setclipboard("https://discord.gg/kgMfr4Bu")
-
+        PlayerGui.GUI.Main.GlobalChat.ActiveOne.Value = false
         loadstring(game:HttpGet(List[scrIdx]["Versions"][VecIbx].Link))()
         script:Destroy()
     end
